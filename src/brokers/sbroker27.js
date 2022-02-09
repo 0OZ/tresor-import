@@ -213,10 +213,7 @@ export const canParseDocument = (
     firstPageContent.some((/** @type {string | string[]} */ line) =>
       line.includes('S Broker')
     ) &&
-    firstPageContent.some(
-      (/** @type {string | string[]} */ line) =>
-        line.includes('v2.7') || line.includes('v10.7')
-    ) &&
+    firstPageContent.slice(0, 10).indexOf('S Broker') >= 0 &&
     getDocumentType(firstPageContent) !== undefined
   );
 };
