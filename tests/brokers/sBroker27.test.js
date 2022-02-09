@@ -71,6 +71,28 @@ describe('Broker: sBroker27', () => {
         },
       ]);
     });
+
+    test('Can parse document: 2022_LU0292096186', () => {
+      const result = sbroker.parsePages(buySamples[3]);
+
+      expect(result.status).toEqual(0);
+      expect(result.activities).toEqual([
+        {
+          broker: 'sBroker',
+          type: 'Buy',
+          date: '2022-02-07',
+          datetime: '2022-02-07T' + result.activities[0].datetime.substring(11),
+          isin: 'LU0292096186',
+          wkn: 'DBX1DG',
+          company: 'XTR.STOXX GBL SEL.DIV.100 SWAP INHABER-ANTEILE 1D O.N.',
+          shares: 1.5936,
+          price: 31.37550200803213,
+          amount: 50,
+          fee: 0,
+          tax: 0,
+        },
+      ]);
+    });
   });
 
   describe('Dividend', () => {
