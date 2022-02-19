@@ -13,6 +13,7 @@ module.exports = {
     libraryTarget: 'umd',
   },
   resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.d.ts'],
     alias: {
       '@': path.resolve(__dirname, 'src/'),
     },
@@ -20,12 +21,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.mjs$/,
+        test: /\.(ts|mjs)$/,
         include: /node_modules/,
         type: 'javascript/auto',
       },
       {
-        test: /\.js$/,
+        test: /\.[tj]s$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',

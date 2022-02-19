@@ -5,10 +5,10 @@ import * as brokers from './brokers';
 import * as apps from './apps';
 import { isBrowser, isNode } from 'browser-or-node';
 import {
-  ParqetDocumentError,
   ParqetActivityValidationError,
-  ParqetParserError,
+  ParqetDocumentError,
   ParqetError,
+  ParqetParserError,
 } from '@/errors';
 
 export const acceptedFileTypes = ['pdf', 'csv'];
@@ -133,6 +133,7 @@ export const parseFile = file => {
         pdfDocument = await pdfjs.getDocument(fileContent).promise;
 
         const loopHelper = Array.from(Array(pdfDocument.numPages)).entries();
+        // @ts-ignore
         for (const [pageIndex] of loopHelper) {
           const parsedContent = await parsePageToContent(
             await pdfDocument.getPage(pageIndex + 1)

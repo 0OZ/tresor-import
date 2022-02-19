@@ -6,6 +6,8 @@ export enum ActivityType {
   TRANSFER_OUT = 'TransferOut',
   PAYBACK = 'Payback',
   TAX_DIVIDEND = 'TaxDividend',
+  ACCOUNT_STATEMENT = 'AccountStatement',
+  ACCOUNT_CLEARING = 'AccountClearing',
 }
 
 export type ActivityTypeUnion =
@@ -40,15 +42,17 @@ export interface Activity {
   shares?: number;
   price?: number;
   amount: number;
-  fee: number = 0;
-  tax: number = 0;
+  fee: number;
+  tax: number;
   foreignCurrency?: string;
   fxRate?: number;
 }
 
 export interface Implementation {
   canParseDocument(pages: Page[], extension: string): boolean;
+
   parsePages(contents): ParserResult;
+
   parsingIsTextBased(): boolean;
 }
 
